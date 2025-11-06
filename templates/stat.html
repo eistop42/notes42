@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h2>Cтатистика</h2>
+
+<p><b>Количество заметок: </b> {{ notes_count }}</p>
+<p><b>В архиве: </b> {{ archive_notes_count }}</p>
+
+<table>
+    <tr>
+        <th>Название категории</th>
+        <th>Количество заметок</th>
+        <th>Средняя длина заметки</th>
+    </tr>
+    {% for category in categories %}
+    <tr>
+        <td>{{ category.title }}</td>
+        <td>{{ category.num_notes }}</td>
+        <td>{{ category.avg_length|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td>Без категории</td>
+        <td>{{ without_category }}</td>
+    </tr>
+</table>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
+</head>
+<body>
+<a href="/"><h1>Мои заметки </h1></a>
+<div class="menu">
+    <a href="/notes/archive">посмотреть архив</a>
+    <a href="/stat">статистика</a>
+</div>
+{% block content %}
+{% endblock %}
+<div id="cat_speak"></div>
+<img id="cat" src="{% static 'images/1.jfif '%}" width="500">
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

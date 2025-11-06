@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="notes">
+    <p>Заметки в архиве</p>
+      {% for note in notes %}
+       <div class="note">
+        <a href="/notes/{{ note.id }}">{{ note.title }}</a>
+        <p>{% if note.category %} {{ note.category.title}} {% else %} Без категории {% endif %}</p>
+        <p>Cтатус: {{ note.get_status_display }}</p>
+        <p>{{ note.text }}</p>
+        <div class="note-buttons">
+            <form action="/notes/{{ note.id }}/delete" method="post">
+                {% csrf_token %}
+                <button>Удалить</button>
+            </form>
+            <form action="/notes/{{ note.id }}/publish" method="post">
+                {% csrf_token %}
+                <button>Опубликовать</button>
+            </form>
+            </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

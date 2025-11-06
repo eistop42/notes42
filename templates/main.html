@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="add-form">
+<!--    <form method="post" enctype="multipart/form-data">-->
+<!--        {% csrf_token %}-->
+<!--        <div>-->
+<!--            <label>Название заметки</label>-->
+<!--            <div><input name="title" placeholder="введите название"></div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>Текст</label>-->
+<!--            <div><textarea name="text" placeholder="введите текст"></textarea></div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>Категория</label>-->
+<!--            <select name="category">-->
+<!--                <option value="" selected>Без категории</option>-->
+<!--                &lt;!&ndash;                выводим категории из базы&ndash;&gt;-->
+<!--                {% for category in categories %}-->
+<!--                <option value="{{ category.id }}">{{ category.title }}</option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>Картинка</label>-->
+<!--            <input placeholder="asdf" type="file" name="image">-->
+<!--        </div>-->
+<!--        <button>Добавить заметку</button>-->
+<!--    </form>-->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ note_form }}
+        <button>Добавить заметку</button>
+    </form>
+</div>
+<div class="notes">
+    <p>Cписок заметок</p>
+    <form style="margin-bottom:10px">
+        <label>Категория</label>
+        <select name="category">
+            <option value=""  {% if not selected_category_id %} selected {% endif %}>Без категории</option>
+            <!--                выводим категории из базы-->
+            {% for category in categories %}
+            <option {% if selected_category_id == category.id %} selected {% endif %} value="{{ category.id }}">{{ category.title }}</option>
+            {% endfor %}
+        </select>
+        <button>Отфильтровать</button>
+    </form>
+    {% for note in notes %}
+    <div class="note">
+        <a href="/notes/{{ note.id }}">{{ note.title }}</a>
+        <p>{% if note.category %} {{ note.category.title}} {% else %} Без категории {% endif %}</p>
+        <p>Cтатус: {{ note.get_status_display }}</p>
+        <p>{{ note.text }}</p>
+        <div class="note-buttons">
+            <form action="notes/{{ note.id }}/delete" method="post">
+                {% csrf_token %}
+                <button>Удалить</button>
+            </form>
+            <form action="notes/{{ note.id }}/archive" method="post">
+                {% csrf_token %}
+                <button>В архив</button>
+            </form>
+            </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

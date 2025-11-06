@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{ note.title }}</h2>
+<p>{{ note.text }}</p>
+{% if note.image %}
+<img src="{{ note.image.url }}" width="300px">
+{% endif %}
+
+{% endblock %}
