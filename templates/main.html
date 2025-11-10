@@ -62,6 +62,7 @@
                 {% csrf_token %}
                 <button>В архив</button>
             </form>
+            <a href="/notes/{{ note.id }}/edit">Редактировать</a>
             </div>
     </div>
     {% endfor %}

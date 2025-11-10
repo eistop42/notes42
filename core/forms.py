@@ -29,7 +29,6 @@ class AddNoteModelForm(forms.ModelForm):
         model = Note
         exclude = ['status']
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['category'].empty_label = 'без категории'

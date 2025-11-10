@@ -195,3 +195,21 @@ def stat(request):
         'without_category': without_category
     }
     return render(request, 'stat.html', context)
+
+def bootstrap(request):
+
+    return render(request, 'bootstrap.html')
+
+def edit_note(request, note_id):
+
+    note = get_object_or_404(Note, id=note_id)
+    form = AddNoteModelForm(instance=note)
+
+    if request.method == 'POST':
+        form = AddNoteModelForm(request.POST, request.FILES, instance=note)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/notes/{note.id}')
+
+    context = {'form': form}
+    return render(request, 'edit_note.html', context)
