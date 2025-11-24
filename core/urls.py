@@ -10,6 +10,7 @@ urlpatterns = [
     path('notes/<int:note_id>/edit', edit_note),
     path('notes/<int:note_id>', note_detail),
     path('notes/archive', archive_notes),
+    path('test', TestPage.as_view()),
     path('stat', stat),
     path('bootstrap', bootstrap),
 ]

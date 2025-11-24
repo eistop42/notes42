@@ -25,6 +25,9 @@ class AddNoteForm(forms.Form):
 
 
 class AddNoteModelForm(forms.ModelForm):
+    review_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
     class Meta:
         model = Note
         exclude = ['status']

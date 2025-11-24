@@ -1,0 +1,15 @@
+
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <h2>Вход на сайт</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button class="btn btn-primary" type="submit">Войти</button>
+        </form>
+        <a href="{% url 'register' %}">Регистрация</a>
+    </div>
+    <div class="col-md-8">
+    </div>
+</div>

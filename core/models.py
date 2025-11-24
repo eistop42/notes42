@@ -24,6 +24,7 @@ class Note(models.Model):
     text = models.TextField(verbose_name='текст')
     created_at = models.DateTimeField(auto_now=True, verbose_name='дата создания')
     image = models.FileField(verbose_name='картинка', null=True, blank=True)
+    review_date = models.DateField(verbose_name='дата пересмотра', null=True, blank=True)
     category = models.ForeignKey(
         NoteCategory,
         null=True,

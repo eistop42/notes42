@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=nf6pq=c2(j_--qiy91b2%#drkjyjsg6!py4bt#w*x!#jlj88$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'core'
+    'core',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -118,6 +119,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = ['static']
+STATIC_ROOT = '/home/c98437/mysite3.na4u.ru/www/static/'
 
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
@@ -126,3 +128,5 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/users/login'

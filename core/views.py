@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
 
+from django.core.files.storage import FileSystemStorage
+from django.views.generic import TemplateView
 from .models import Note, NoteCategory
 
 from .forms import AddNoteForm, AddNoteModelForm
@@ -177,7 +179,7 @@ def archive_notes(request):
     context = {'notes': notes}
     return render(request, 'archive_notes.html', context)
 
-
+@login_required
 def stat(request):
     from django.db.models import Count, Avg
     from django.db.models.functions import Length
@@ -196,6 +198,7 @@ def stat(request):
     }
     return render(request, 'stat.html', context)
 
+@login_required
 def bootstrap(request):
 
     return render(request, 'bootstrap.html')
@@ -213,3 +216,7 @@ def edit_note(request, note_id):
 
     context = {'form': form}
     return render(request, 'edit_note.html', context)
+
+
+class TestPage(TemplateView):
+    template_name = 'test.html'
